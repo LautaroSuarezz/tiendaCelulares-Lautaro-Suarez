@@ -15,7 +15,7 @@ const rowProduct = document.querySelector(".row-product");
 const productsList = document.querySelector(".container-items");
 
 // Variable de arreglos de Productos
-let allProducts = [];
+let allProducts = JSON.parse(localStorage.getItem("carrito")) || [];
 
 const valorTotal = document.querySelector(".total-pagar");
 
@@ -53,6 +53,7 @@ productsList.addEventListener("click", (e) => {
     }
 
     showHTML();
+    saveLocal();
   }
 });
 
@@ -66,6 +67,7 @@ rowProduct.addEventListener("click", (e) => {
     console.log(allProducts);
 
     showHTML();
+    saveLocal();
   }
 });
 
@@ -122,3 +124,7 @@ const showHTML = () => {
   valorTotal.innerText = `$${total}`;
   countProducts.innerText = totalOfProducts;
 };
+
+//set item
+const saveLocal = () => {
+localStorage.setItem("carrito", JSON.stringify(allProducts));}
